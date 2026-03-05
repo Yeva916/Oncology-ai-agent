@@ -1,0 +1,10 @@
+[project]
+name = "onco-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic-settings>=2.13.1",
+    "pydantic[email]>=2.12.5",
+]

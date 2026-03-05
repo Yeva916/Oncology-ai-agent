@@ -1,0 +1,26 @@
+# --- Environment ---
+.venv/
+env/
+venv/
+ENV/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# --- Secret Keys (CRITICAL) ---
+.env
+*.secrets
+secrets.toml
+
+# --- VS Code & System ---
+.vscode/
+.DS_Store
+Thumbs.db
+
+# --- Data & Logs ---
+*.log       
+*.vcf            
