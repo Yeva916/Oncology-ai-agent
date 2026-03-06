@@ -1,12 +1,15 @@
 
 import json
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 class OncoDatabase:
     _data = None
 
     @classmethod
-    def load_data(cls,file_path:str):
+    def load_data(cls,file_path:str|None = None):
         
         if cls._data is None:
             print("---Loading Guidelines into Memory---")
@@ -17,13 +20,17 @@ class OncoDatabase:
         return cls._data
 
     @classmethod
-    def lookup(cls,gene:str):
+    def lookup(cls,gene:str,mutation:str):
         db = cls.load_data()
 
-        gene_data = db.get(gene)
+        gene_data = db.get(gene,{})[mutation]
         return gene_data
 
 if __name__ == "__main__":
-    data = OncoDatabase.load_data("./data/mutation_db.json")
-    gene_data = data.get("EGFR")
+    load_dotenv()
+    # print(type(os.getenv("DATA_DIR")))
+    data = OncoDatabase.load_data(os.getenv("DATA_DIR"))
+    
+    # print(os.getenv("DATA_DIR"))
+    gene_data = data.get("EGFR",{})["Exon19del"]
     print(gene_data)

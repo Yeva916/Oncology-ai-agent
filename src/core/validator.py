@@ -9,7 +9,7 @@ from pydantic import BaseModel, ValidationError,Field
 from enum import Enum
 
 class MutationType(str, Enum):
-    EGFR_EXON_19 = "EGFR"  
+    EGFR_EXON_19 = "Exon19del"  
     EGFR_L858R = "L858R"
     EGFR_T790M = "T790M"
 
@@ -30,7 +30,7 @@ def validate_input(input_data):
 
 if __name__ == "__main__":
     input_data = {
-        "mutation": "EGFR",
+        "mutation": "Exon19del",
         "cancer_type": "nsclc"
     }
     validated_data = validate_input(input_data)
