@@ -21,5 +21,9 @@ if __name__ == "__main__":
     result = rule_engine(validated_data)
     print(result)
     
+    """
+    ouput:
+    {'protein_change': ['E746_A750del'], 'cancer_type': 'NSCLC', 'therapy': {'first_line': 'Osimertinib', 'alternative': ['Erlotinib', 'Gefitinib']}, 'evidence_level': 'High', 'description': 'EGFR exon 19 deletion activates the EGFR signaling pathway and responds well to EGFR tyrosine kinase inhibitors.'}
+    """
 
 
