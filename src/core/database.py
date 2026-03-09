@@ -14,6 +14,7 @@ class OncoDatabase:
         if cls._data is None:
             print("---Loading Guidelines into Memory---")
             full_path = Path(file_path).resolve()
+            print(full_path)
             with open(full_path,'r') as f:
                 cls._data = json.load(f)
         
