@@ -1,43 +1,38 @@
-
+from typer import Typer
+from src.pipeline import run
 import os
-
-from langchain.messages import HumanMessage
-
+from dotenv import load_dotenv
 from src.core.database import OncoDatabase
-from src.agents.explanation_agent import AgentState, explanation_agent
-from src.core.rule_engine import rule_engine
-from src.core.validator import InputData
-import json
-
-def pipeline(input_data):
-    validated_data = InputData(**input_data)
-    result = rule_engine(validated_data)
-    result = json.dumps(result, indent=2)  
-    input_message = HumanMessage(content=result)
-    agent_state = AgentState(message=input_message)
-    explanation = explanation_agent(agent_state)
-    return explanation
-
-if __name__ == "__main__":
+from rich.panel import Panel
+from rich.spinner import Spinner
+from rich.console import Console
+from rich.markdown import Markdown
+app = Typer()
+console = Console()
+load_dotenv()
+dna_spinner = Spinner("aesthetic", text="[bold cyan]🧬 Processing DNA...")
+@app.command()
+def main(mutation: str, cancer_type: str):
     input_data = {
-        "mutation": "Exon19del",
-        "cancer_type": "nsclc"
+        "mutation": mutation,
+        "cancer_type": cancer_type
     }
     OncoDatabase.load_data(os.getenv("DATA_DIR"))
-    explanation = pipeline(input_data)
-    print(explanation)
+    with console.status(dna_spinner):
+        
 
-"""
-output:
-This patient has **Non-Small Cell Lung Cancer (NSCLC)** driven by a specific genetic alteration: an **EGFR exon 19 deletion (E746_A750del)**.
+        # explanation = run(input_data)
+        explanation = run(input_data)
+        md = Markdown(explanation)
+        console.print(
+            Panel(
+                md,
+                title = "[bold cyan]Precision Oncology Report[/]",
+                border_style="bright_blue",
+                padding=(1, 2)
+            )
+        )
+    # print(explanation)
 
-**Key Points:**
-
-1.  **Molecular Profile:** The presence of an EGFR exon 19 deletion is a highly significant and actionable finding. This specific mutation leads to constitutive (always-on) activation of the EGFR signaling pathway, which promotes uncontrolled cell growth and survival in cancer cells.
-2.  **Therapeutic Strategy:** Tumors with this mutation are highly sensitive to **EGFR tyrosine kinase inhibitors (TKIs)**.
-    *   **First-Line Recommendation:** The preferred initial treatment is **Osimertinib**. Osimertinib is a third-generation EGFR TKI that has demonstrated superior efficacy and a favorable safety profile compared to older generations of TKIs in patients with EGFR-mutated NSCLC, including those with exon 19 deletions.
-    *   **Alternative Options:** **Erlotinib** and **Gefitinib** (first-generation EGFR TKIs) are also effective alternatives, though Osimertinib is generally favored for first-line therapy due to its enhanced activity and ability to overcome common resistance mechanisms.
-3.  **Evidence Level:** The recommendation for these targeted therapies is supported by a **High level of evidence**, indicating robust clinical data from well-designed studies, which strongly validates this treatment approach.
-
-**In summary:** This patient has a classic, highly targetable mutation (EGFR exon 19 deletion) in their NSCLC, making them an excellent candidate for precision oncology with EGFR TKIs, with Osimertinib being the optimal first-line choice based on strong clinical evidence.
-"""
+if __name__ == "__main__":
+    app()

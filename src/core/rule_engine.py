@@ -1,5 +1,5 @@
-from src.core.validator import InputData
-from src.core.database import OncoDatabase
+from .validator import InputData
+from .database import OncoDatabase
 from dotenv import load_dotenv
 import os
 
