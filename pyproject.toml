@@ -11,4 +11,5 @@ dependencies = [
     "pydantic-settings>=2.13.1",
     "pydantic[email]>=2.12.5",
     "python-dotenv>=1.2.2",
+    "typer>=0.24.1",
 ]
