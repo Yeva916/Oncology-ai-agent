@@ -6,7 +6,17 @@ import os
 def rule_engine(input_data:InputData,gene:str = "EGFR"):
     mutation = input_data.mutation.value
     gene_data = OncoDatabase.lookup(gene, mutation)
-    return gene_data
+    drugs = []
+    therapy = gene_data.get("therapy",{})
+    for type_, drug in therapy.items():
+        if isinstance(drug, list):
+
+            for d in drug:
+                drugs.append({"drug": d, "type": type_})
+        else:
+            drugs.append({"drug": drug, "type": type_})
+
+    return drugs
 
 if __name__ == "__main__":
     load_dotenv()
@@ -23,7 +33,15 @@ if __name__ == "__main__":
     
     """
     ouput:
-    {'protein_change': ['E746_A750del'], 'cancer_type': 'NSCLC', 'therapy': {'first_line': 'Osimertinib', 'alternative': ['Erlotinib', 'Gefitinib']}, 'evidence_level': 'High', 'description': 'EGFR exon 19 deletion activates the EGFR signaling pathway and responds well to EGFR tyrosine kinase inhibitors.'}
+    [
+    {'drug': 'Osimertinib', 'type': 'first_line'}, 
+    {'drug': 'Erlotinib', 'type': 'alternative'}, 
+    {'drug': 'Gefitinib', 'type': 'alternative'}
+    ]
     """
 
 
+""""therapy": {
+        "first_line": "Osimertinib",
+        "alternative": ["Erlotinib", "Gefitinib"]
+      }"""

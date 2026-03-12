@@ -8,6 +8,8 @@
         "alternative": ["Erlotinib", "Gefitinib"]
       },
       "evidence_level": "High",
+      "approval_status": "FDA Approved",
+      "trial_phase": "Phase III",
       "description": "EGFR exon 19 deletion activates the EGFR signaling pathway and responds well to EGFR tyrosine kinase inhibitors."
     },
 
@@ -19,6 +21,8 @@
         "alternative": ["Erlotinib", "Gefitinib"]
       },
       "evidence_level": "High",
+      "approval_status": "FDA Approved",
+      "trial_phase": "Phase III",
       "description": "The L858R mutation results in increased EGFR kinase activity and is sensitive to EGFR inhibitors."
     },
 
@@ -29,6 +33,8 @@
         "second_line": "Osimertinib"
       },
       "evidence_level": "High",
+      "approval_status": "FDA Approved",
+      "trial_phase": "Phase III",
       "description": "The T790M mutation is a resistance mutation that occurs after treatment with first-generation EGFR inhibitors."
     }
   }
