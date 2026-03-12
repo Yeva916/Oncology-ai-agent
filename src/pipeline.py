@@ -5,27 +5,44 @@ import json
 
 from src.agents.explanation_agent import AgentState, explanation_agent
 from src.core.database import OncoDatabase
+from src.core.ranking_engine import DecisionEngine
 from src.core.rule_engine import rule_engine
-from src.core.validator import InputData
+from src.core.validator import InputData, validate_input
+
+def get_evidence_level(therapies, recommended_therapy):
+    for therapy in therapies:
+        if therapy["drug"] == recommended_therapy:
+            return therapy.get("evidence_level", "Low")
+    return "Low"
 
 
 def run(input_data):
-    validated_data = InputData(**input_data)
+    validated_data = validate_input(input_data)
     result = rule_engine(validated_data)
-    result = json.dumps(result, indent=2)  
-    input_message = HumanMessage(content=result)
+    decision = DecisionEngine().decide(result.get("therapy",[]))
+    gene_data = OncoDatabase.lookup(input_data.get("gene","EGFR"), input_data.get("mutation",""))
+    explanation_context = {
+        "gene" : input_data.get("gene","EGFR"),
+        "mutation" : validated_data.mutation.value,
+        "cancer_type" : validated_data.cancer_type.value,
+        "recommended_therapy" : decision["recommended_therapy"],
+        "evidence_level" : get_evidence_level(gene_data.get("therapies",[]), decision["recommended_therapy"]),
+        "mutation_description" : gene_data["description"]
+        
+    } 
+    input_message = HumanMessage(content=json.dumps(explanation_context))
     agent_state = AgentState(message=input_message)
     explanation = explanation_agent(agent_state)
     return explanation
 
 if __name__ == "__main__":
     input_data = {
-        "mutation": "Exon19del",
+        "mutation": "L858R",
         "cancer_type": "nsclc"
     }
     OncoDatabase.load_data(os.getenv("DATA_DIR"))
     explanation = run(input_data)
-    print(explanation)
+    # print(explanation)
 
 
 """

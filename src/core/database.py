@@ -13,8 +13,9 @@ class OncoDatabase:
         
         if cls._data is None:
             print("---Loading Guidelines into Memory---")
+            print(file_path)
             full_path = Path(file_path).resolve()
-            # print(full_path)
+            
             with open(full_path,'r') as f:
                 cls._data = json.load(f)
         
@@ -33,5 +34,5 @@ if __name__ == "__main__":
     data = OncoDatabase.load_data(os.getenv("DATA_DIR"))
     
     # print(os.getenv("DATA_DIR"))
-    gene_data = data.get("EGFR",{})["Exon19del"]
+    gene_data = data.get("EGFR",{})["L858R"]
     print(gene_data)
