@@ -33,7 +33,15 @@ def run(input_data):
     input_message = HumanMessage(content=json.dumps(explanation_context))
     agent_state = AgentState(message=input_message)
     explanation = explanation_agent(agent_state)
-    return explanation
+    return {
+        "gene" : input_data.get("gene","EGFR"),
+        "mutation" : validated_data.mutation.value,
+        "cancer_type" : validated_data.cancer_type.value,
+        "recommended_therapy" : decision["recommended_therapy"],
+        "evidence_level" : get_evidence_level(gene_data.get("therapies",[]), decision["recommended_therapy"]),
+        "mutation_description" : explanation
+        
+    } 
 
 if __name__ == "__main__":
     input_data = {
