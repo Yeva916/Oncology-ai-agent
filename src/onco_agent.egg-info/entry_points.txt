@@ -1,0 +1,2 @@
+[console_scripts]
+onco-agent = onco_agent.cli:app

@@ -3,10 +3,10 @@ import os
 
 from dotenv import load_dotenv
 
-from src.core.database import OncoDatabase
+from onco_agent.core.database import OncoDatabase
 # from src.core.database import OncoDatabase
-from src.core.rule_engine import rule_engine
-from src.core.validator import InputData
+from onco_agent.core.rule_engine import rule_engine
+from onco_agent.core.validator import InputData
 
 
 class DecisionEngine:

@@ -3,11 +3,11 @@ import os
 from langchain.messages import HumanMessage
 import json
 
-from src.agents.explanation_agent import AgentState, explanation_agent
-from src.core.database import OncoDatabase
-from src.core.ranking_engine import DecisionEngine
-from src.core.rule_engine import rule_engine
-from src.core.validator import InputData, validate_input
+from onco_agent.agents.explanation_agent import AgentState, explanation_agent
+from onco_agent.core.database import OncoDatabase
+from onco_agent.core.ranking_engine import DecisionEngine
+from onco_agent.core.rule_engine import rule_engine
+from onco_agent.core.validator import InputData, validate_input
 
 def get_evidence_level(therapies, recommended_therapy):
     for therapy in therapies:
