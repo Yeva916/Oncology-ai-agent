@@ -1,35 +1,34 @@
 {
   "EGFR": {
-    "Exon19del": {
-      "protein_change": ["E746_A750del"],
-      "cancer_type": "NSCLC",
-      "therapy": {
-        "first_line": "Osimertinib",
-        "alternative": ["Erlotinib", "Gefitinib"]
-      },
-      "evidence_level": "High",
-      "description": "EGFR exon 19 deletion activates the EGFR signaling pathway and responds well to EGFR tyrosine kinase inhibitors."
-    },
-
     "L858R": {
       "protein_change": ["L858R"],
       "cancer_type": "NSCLC",
-      "therapy": {
-        "first_line": "Osimertinib",
-        "alternative": ["Erlotinib", "Gefitinib"]
-      },
-      "evidence_level": "High",
-      "description": "The L858R mutation results in increased EGFR kinase activity and is sensitive to EGFR inhibitors."
-    },
 
-    "T790M": {
-      "protein_change": ["T790M"],
-      "cancer_type": "NSCLC",
-      "therapy": {
-        "second_line": "Osimertinib"
-      },
-      "evidence_level": "High",
-      "description": "The T790M mutation is a resistance mutation that occurs after treatment with first-generation EGFR inhibitors."
+      "therapies": [
+        {
+          "drug": "Osimertinib",
+          "line": "first_line",
+          "evidence_level": "High",
+          "approval_status": "FDA Approved",
+          "trial_count": 3
+        },
+        {
+          "drug": "Erlotinib",
+          "line": "alternative",
+          "evidence_level": "Moderate",
+          "approval_status": "FDA Approved",
+          "trial_count": 2
+        },
+        {
+          "drug": "Gefitinib",
+          "line": "alternative",
+          "evidence_level": "Moderate",
+          "approval_status": "FDA Approved",
+          "trial_count": 2
+        }
+      ],
+
+      "description": "The L858R mutation results in increased EGFR kinase activity and is sensitive to EGFR inhibitors."
     }
   }
 }
