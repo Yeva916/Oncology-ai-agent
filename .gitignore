@@ -25,3 +25,4 @@ Thumbs.db
 *.log       
 *.vcf            
 *.egg-info/
+test.py
