@@ -29,6 +29,8 @@ class KnowlegeGraphInputSchema(BaseModel):
 class KnowledgeGraphOutputSchema(BaseModel):
     relations:List[GraphOutputEntry] = Field(default_factory=list)
 
+# sechma after merging all the output of the all the knowledge layer is missing
+
 class ReasoningInputSchema(BaseModel):
     mutations:List[Mutation] = Field(default_factory=list,description="List of validated mutations from the VCF layer")
     knowledge:List[KnowledgeEntry] = Field(default_factory=list,description="Retrieved clinical evidence and therapy guidelines")

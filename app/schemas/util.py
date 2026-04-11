@@ -1,4 +1,5 @@
 
+from enum import Enum
 from typing import List, Literal
 from pydantic import BaseModel, Field
 
@@ -59,3 +60,8 @@ class FinalValidation(BaseModel):
     approved:bool = Field(..., description="Flag for clinical guideline compliance")
     notes:str = Field(..., description="Warnings or specific notes from the validation agent")
 
+class TaskStatus(Enum):
+    PENDING = "pending"
+    IN_PROGRESS = "in_progress"
+    COMPLETED = "completed"
+    FAILED = "failed"
