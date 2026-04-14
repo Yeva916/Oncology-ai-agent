@@ -43,3 +43,16 @@ class logs(Base):
     output_data = Column(JSON, nullable=False)
     error_message = Column(String, nullable=True)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+
+class ClinicalTrial(Base):
+    __tablename__ = "clinical_trials"
+    id = Column(Integer, primary_key=True, nullable=False)
+    nct_id = Column(String, nullable=False, unique=True)
+    brief_title = Column(String, nullable=False)
+    interventions = Column(JSON, nullable=True)
+    brief_summary = Column(String, nullable=True)
+    conditions = Column(JSON, nullable=True)
+    eligibility_criteria = Column(JSON, nullable=True) # amendments Strings -> JSON
+    phases = Column(String, nullable=True)
+    locations = Column(JSON, nullable=True)
+    created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))

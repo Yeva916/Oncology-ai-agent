@@ -26,3 +26,5 @@ Thumbs.db
 *.vcf            
 *.egg-info/
 test.py
+*.json
+app/data
