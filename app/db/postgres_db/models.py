@@ -1,11 +1,13 @@
-from sqlalchemy import JSON, Column, Enum, Float, ForeignKey, Integer, String
+from sqlalchemy import JSON, Column, Enum, Float, ForeignKey, Integer, String,func,Index,Text,cast,Computed,literal_column
 from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.dialects.postgresql import JSONB,TSVECTOR
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 
 from app.schemas.util import TaskStatus
 from .session import Base
 
+SEARCH_LANG = literal_column("'english'")
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, nullable=False)
@@ -49,10 +51,27 @@ class ClinicalTrial(Base):
     id = Column(Integer, primary_key=True, nullable=False)
     nct_id = Column(String, nullable=False, unique=True)
     brief_title = Column(String, nullable=False)
-    interventions = Column(JSON, nullable=True)
+    interventions = Column(JSONB, nullable=True)
     brief_summary = Column(String, nullable=True)
-    conditions = Column(JSON, nullable=True)
-    eligibility_criteria = Column(JSON, nullable=True) # amendments Strings -> JSON
+    conditions = Column(JSONB, nullable=True)
+    eligibility_criteria = Column(JSONB, nullable=True) # amendments Strings -> JSON
     phases = Column(String, nullable=True)
-    locations = Column(JSON, nullable=True)
+    locations = Column(JSONB, nullable=True)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    search_vector = Column(
+        TSVECTOR,
+        Computed(
+            func.setweight(func.to_tsvector(SEARCH_LANG, func.coalesce(brief_title, '')), 'C').op('||')(
+                func.setweight(func.to_tsvector(SEARCH_LANG, func.coalesce(cast(conditions, Text), '')), 'A')
+            ).op('||')(
+                func.setweight(func.to_tsvector(SEARCH_LANG, func.coalesce(brief_summary, '')), 'D')
+            ).op('||')(
+                func.setweight(func.to_tsvector(SEARCH_LANG, func.coalesce(eligibility_criteria['criteria'].as_string(), '')), 'B')
+            ),
+            persisted=True
+        )
+    )
+    
+    __table_args__ = (
+        Index('ix_clinical_trials_search_vector', 'search_vector', postgresql_using='gin'),
+    )
