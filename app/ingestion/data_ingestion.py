@@ -1,6 +1,6 @@
 import requests
 
-def fetch_clinical_trials_data(term,page_size=5):
+def fetch_clinical_trials_data(term,page_size=1):
     url = "https://clinicaltrials.gov/api/v2/studies"
 
     # 2. Organize your fields into a single comma-separated string
