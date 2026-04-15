@@ -28,4 +28,6 @@ def keyword_retriever(search_query):
     #     print(f"NCI ID: {trial.nct_id}, Title: {trial.brief_title}, Rank: {score}")
     return output
 
-print(keyword_retriever("non small lung cancer Osimertinib"))
+print(keyword_retriever("non small lung Osimertinib"))
+#output
+# [{'nct_id': 'NCT06670196', 'rank': 0.99999994}, {'nct_id': 'NCT06417814', 'rank': 0.9999998}]

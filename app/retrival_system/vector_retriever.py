@@ -15,3 +15,4 @@ def vector_retriever(search_query):
     return output
 
 print(vector_retriever("non small lung cancer Osimertinib age above 18"))
+#[{'nct_id': 'NCT06670196', 'score': 0.694561839}, {'nct_id': 'NCT06417814', 'score': 0.689498901}]
