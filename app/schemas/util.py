@@ -65,3 +65,13 @@ class TaskStatus(Enum):
     IN_PROGRESS = "in_progress"
     COMPLETED = "completed"
     FAILED = "failed"
+
+# class EligibilityContext(BaseModel):
+#     inclusion_criteria:List[str] = Field(default_factory=list, description="List of inclusion criteria for the trial")
+#     exclusion_criteria:List[str] = Field(default_factory=list, description="List of exclusion criteria for the trial")
+
+# class Trial_context(BaseModel):
+#     trial_id:str
+#     title:str
+#     condition:str
+#     eligibility:EligibilityContext

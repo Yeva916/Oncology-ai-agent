@@ -7,7 +7,12 @@ You are a clinical research assistant specialized in analyzing clinical trial el
 Your task is to evaluate and explain how relevant the retrieved clinical trials are to the given patient/query."""
 
 human_message = """
+------------------
+PATIENT DATA:
+{user_query}
+
 RETRIEVED CLINICAL TRIALS:
+{context}
 
 Each trial is provided in the following format:
 
@@ -21,34 +26,38 @@ Inclusion:
 Exclusion:
     •  ...
 
-{context}
+
 
 INSTRUCTIONS:
 
-1. Process EACH trial separately using its Trial ID.
-2. For each clinical trial:
-•Briefly summarize the trial (condition, purpose)
-•Analyze eligibility criteria:
-    • Inclusion criteria match
-    • Exclusion criteria conflicts
-•Explain whether the patient/query is:
-    • Strong match
-    • Partial match
-    • Not suitable
-3. Provide reasoning STRICTLY based on the provided context.
-    •Do NOT assume missing data
-    •Do NOT hallucinate medical facts
+1. Evaluate EACH trial independently using the provided patient data.
+2. For each trial:
+    •Provide a concise clinical summary (condition, intent of study)
+    •Assess eligibility:
+        • Inclusion criteria satisfied
+        • Inclusion gaps (missing or unmet criteria)
+        • Exclusion conflicts (explicit disqualifiers)
+    •Classify relevance:
+        • High → strong eligibility, minimal conflicts
+        • Medium → partial eligibility or unclear factors
+        • Low → clear exclusion or major mismatch
+3. Base all reasoning STRICTLY on the provided data.
+    •Do NOT infer or assume missing clinical details
+    •If required data is absent, state: "Not specified"
 4. Rank the trials from most relevant to least relevant.
 5. Output format:
 
 Trial ID:
 Relevance: <High / Medium / Low>
-Summary:
-Eligibility Analysis:
+Clinical Summary:
+Eligibility Assessment:
 
     •Inclusion Match:
-    •Exclusion Risks:
-    Final Verdict:
+    •Inclusion Gaps:
+    •Exclusion Conflicts:
+
+Final Judgment:
+<clear, clinically reasoned conclusion>
 
 (Repeat for each trial)
 
@@ -90,5 +99,5 @@ if __name__ == "__main__":
     - LVEF < 50%
     """
     
-    prompt_text = context_prompt.format(context=example_context)
+    prompt_text = context_prompt.format(user_query="Patient with metastatic colorectal cancer", context=example_context)
     print(prompt_text)

@@ -12,4 +12,6 @@ class ClinicalTrialSchema(BaseModel):
     # Eligibility Logic
     inclusion_rules: List[str] = Field(description="Key clinical inclusion criteria")
     exclusion_rules: List[str] = Field(description="Key clinical exclusion criteria")
-    
+
+class PatientQuerySchema(BaseModel):
+    pass
