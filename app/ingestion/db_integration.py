@@ -1,8 +1,5 @@
-# from app.schemas.llm_schema import ClinicalTrialSchema
 from langchain_google_genai import ChatGoogleGenerativeAI
 from app.prompts.eligibility import prompt
-# from app.db.postgres_db.session import get_db
-# from app.db.postgres_db.models import EligibilityCriteria
 from app.db.postgres_db.session import get_db
 from app.db.postgres_db.models import ClinicalTrial
 from langchain_core.documents import Document
@@ -30,8 +27,6 @@ def save_clinical_trial_data_to_postgres(clinical_trial_data):
             phases = trial['protocolSection'].get('designModule', {}).get('phases', [])
             locations = trial['protocolSection'].get('contactsLocationsModule', {}).get('locations', [])
             response = extraction_chain.invoke({"protocol_text": eligibility_criteria})
-            # data_as_dict = response.model_dump()
-            # eligibility_criteria = data_as_dict
             clinical_trial_entry = ClinicalTrial(
                 nct_id=nct_id,
                 brief_title=brief_title,

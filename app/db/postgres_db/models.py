@@ -75,9 +75,3 @@ class ClinicalTrial(Base):
     __table_args__ = (
         Index('ix_clinical_trials_search_vector', 'search_vector', postgresql_using='gin'),
     )
-
-# class EligibilityCriteria(Base):
-#     __tablename__ = "eligibility_criteria"
-#     id = Column(Integer, primary_key=True, nullable=False)
-#     nct_id = Column(String, ForeignKey("clinical_trials.nct_id", ondelete="CASCADE"), nullable=False)
-#     criteria = Column(JSON, nullable=True)

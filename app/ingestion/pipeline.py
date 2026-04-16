@@ -1,11 +1,10 @@
 from app.ingestion.data_ingestion import fetch_clinical_trials_data
 from app.ingestion.db_integration import save_clinical_trial_data_to_postgres, save_clinical_trials_data_to_vector_db
-# from app.ingestion.pre_process import build_eligibility_criteria_json
-# from app.db.postgres_db.models import EligibilityCriteria
+
 def run_pipeline(search_term, vector_client):
     # Step 1: Fetch clinical trials data
     print("Fetching clinical trials data...")
-    clinical_trials_data = fetch_clinical_trials_data(search_term, page_size=5)  # Adjust page_size as needed
+    clinical_trials_data = fetch_clinical_trials_data(search_term, page_size=5)  
 
     # Step 2: Save data to PostgreSQL
     print("Saving clinical trials data to PostgreSQL...")
