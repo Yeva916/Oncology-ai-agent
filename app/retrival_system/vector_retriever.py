@@ -16,3 +16,6 @@ def vector_retriever(search_query):
 
 print(vector_retriever("non small lung cancer Osimertinib age above 18"))
 #[{'nct_id': 'NCT06670196', 'score': 0.694561839}, {'nct_id': 'NCT06417814', 'score': 0.689498901}]
+
+# current
+# [{'nct_id': 'NCT06538038', 'score': 0.732984066}, {'nct_id': 'NCT04849481', 'score': 0.675171137}, {'nct_id': 'NCT06863506', 'score': 0.674155056}, {'nct_id': 'NCT05751018', 'score': 0.663163722}, {'nct_id': 'NCT06116682', 'score': 0.659241557}]

@@ -31,3 +31,6 @@ def keyword_retriever(search_query):
 print(keyword_retriever("non small lung Osimertinib"))
 #output
 # [{'nct_id': 'NCT06670196', 'rank': 0.99999994}, {'nct_id': 'NCT06417814', 'rank': 0.9999998}]
+
+#current
+# [{'nct_id': 'NCT06538038', 'rank': 0.99999946}]
