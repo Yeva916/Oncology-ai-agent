@@ -33,7 +33,7 @@ def hybrid_retriever(keyword_results, vector_results, alpha=0.5):
             "final_score": weighted_score,
             "breakdown": scores
         })
-    final_results = filter_results(final_results, threshold=0.5)
+    final_results = filter_results(final_results, threshold=0.3)
     return sorted(final_results, key=lambda x: x['final_score'], reverse=True)
 
 def filter_results(results, threshold=0.5):
