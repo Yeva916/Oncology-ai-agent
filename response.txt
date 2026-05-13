@@ -1,13 +1,13 @@
 Trial ID: NCT06116682
 Relevance: Low
-Clinical Summary: A targeted treatment trial for patients with advanced non-small cell lung cancer (NSCLC) specifically characterized by increased copies of the MET gene.
+Clinical Summary: A targeted treatment trial (part of Lung-MAP) for patients with advanced non-small cell lung cancer (NSCLC) specifically characterized by increased copies of the MET gene.
 Eligibility Assessment:
 
-    •Inclusion Match: Advanced NSCLC; Zubrod performance status 0-2 (Patient ECOG 1 is equivalent).
-    •Inclusion Gaps: Assignment to S1900J by SWOG SDMC; Measurable disease documentation; Brain scan/CNS status; Lab values (ANC, Hemoglobin, Platelets, Bilirubin, AST/ALT, Creatinine); Cardiac function; Diabetes status; Pregnancy test.
-    •Exclusion Conflicts: The trial requires the patient to have "Progressed following the most recent line of therapy" and to have "Received at least one line of systemic treatment." The patient has had no prior systemic therapy.
+    •Inclusion Match: Zubrod performance status 0-2 (Patient ECOG PS 1 is compatible).
+    •Inclusion Gaps: LUNGMAP protocol assignment, measurable disease documentation, brain scan results, and specific laboratory values (ANC, Hemoglobin, Platelets, Bilirubin, AST/ALT, Creatinine) are Not specified.
+    •Exclusion Conflicts: The trial requires that the patient has "Received at least one line of systemic treatment" and has "Progressed following the most recent line of therapy." The patient has had no prior systemic therapy.
 
-Final Judgment: The patient is ineligible because the trial requires prior systemic therapy and disease progression following that therapy, whereas the patient is treatment-naïve.
+Final Judgment: The patient is ineligible for this trial because they are treatment-naïve, whereas the trial explicitly requires at least one prior line of systemic therapy and evidence of disease progression.
 
 ---
 
@@ -16,11 +16,11 @@ Relevance: Medium
 Clinical Summary: A prospective non-interventional study comparing the use of Osimertinib with or without chemotherapy in patients with EGFR-mutated NSCLC.
 Eligibility Assessment:
 
-    •Inclusion Match: Pathologically-confirmed NSCLC; Advanced disease; Age >= 18 (Patient is 65).
-    •Inclusion Gaps: Confirmation of EGFR mutation status (Not specified in patient data).
-    •Exclusion Conflicts: None identified based on provided data.
+    •Inclusion Match: Pathologically-confirmed NSCLC, advanced disease (Patient has advanced NSCLC), and age $\ge$ 18 (Patient is 65).
+    •Inclusion Gaps: EGFR mutation status is Not specified.
+    •Exclusion Conflicts: None based on provided data (Patient has no prior EGFR TKI treatment).
 
-Final Judgment: The patient meets the age and disease stage requirements. However, relevance is Medium because the trial is restricted to patients with EGFR mutations, and the patient's mutation status is not specified.
+Final Judgment: The patient meets the basic demographic and disease stage requirements. However, relevance is Medium because the trial is restricted to patients with EGFR mutations, and the patient's mutation status is Not specified.
 
 ---
 
@@ -28,6 +28,6 @@ FINAL SUMMARY:
 
 Best matching trial: NCT06538038
 
-Why it is the best: Trial NCT06116682 explicitly excludes the patient because they have not received prior systemic therapy. In contrast, Trial NCT06538038 allows for patients who have not received prior treatment and matches the patient's age and disease stage.
+Why it is the best: Trial NCT06116682 is a definitive mismatch because it requires prior systemic therapy, which the patient has not received. Trial NCT06538038 is compatible with the patient's age, disease stage, and treatment-naïve status.
 
-Risks or uncertainties: The primary uncertainty for Trial NCT06538038 is the patient's EGFR mutation status; if the patient does not have an EGFR mutation, they will be ineligible.
+Any risks or uncertainties: The primary uncertainty for Trial NCT06538038 is the patient's EGFR mutation status; if the patient does not have a sensitizing EGFR mutation, they would be ineligible.
