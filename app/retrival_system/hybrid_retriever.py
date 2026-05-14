@@ -18,9 +18,9 @@ def hybrid_retriever(keyword_results, vector_results, alpha=0.5):
     for item in vector_results:
         nid = item['nct_id']
         if nid in combined_data:
-            combined_data[nid]["vector"] = item['rank']
+            combined_data[nid]["vector"] = item['score']
         else:
-            combined_data[nid] = {"keyword": 0.0, "vector": item['rank']}
+            combined_data[nid] = {"keyword": 0.0, "vector": item['score']}
 
 
     final_results = []

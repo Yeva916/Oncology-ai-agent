@@ -16,7 +16,12 @@ def validate_input(state: AnalysisState) -> AnalysisState:
         return state
     state["error"] = None
     return state
-
+def get_context(state: AnalysisState) -> AnalysisState:
+    """Placeholder for context retrieval logic (if needed)"""
+    # In a real implementation, this could fetch additional context based on the query
+    
+    state["context"] = None
+    return state
 def generate_analysis(state: AnalysisState) -> AnalysisState:
     """Generate trial analysis using LLM"""
     try:

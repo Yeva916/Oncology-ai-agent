@@ -3,51 +3,50 @@ import React from 'react'
 export default function TrialResult({ result }) {
   if (!result) return null
 
-  // Parse result text into trials and summary
+  const normalizeText = (text) => text.replace(/\r/g, '').trim()
+
+  const extractSection = (block, startLabel, endLabels = []) => {
+    const startIndex = block.indexOf(startLabel)
+    if (startIndex < 0) return ''
+
+    const remainder = block.slice(startIndex + startLabel.length)
+    const endIndex = endLabels
+      .map(label => remainder.indexOf(label))
+      .filter(index => index >= 0)
+      .sort((left, right) => left - right)[0]
+
+    return (endIndex !== undefined ? remainder.slice(0, endIndex) : remainder).trim()
+  }
+
   const parseResponse = (text) => {
-    const trials = []
-    const finalSummaryMatch = text.match(/\*\*FINAL SUMMARY:\*\*(.+)$/s)
+    const normalized = normalizeText(text)
+    const finalSummaryMatch = normalized.match(/\*\*FINAL SUMMARY:\*\*([\s\S]*)$/i) || normalized.match(/FINAL SUMMARY:\s*([\s\S]*)$/i)
     const finalSummary = finalSummaryMatch ? finalSummaryMatch[1].trim() : ''
-    
-    // Split by --- to get trial blocks
-    const trialBlocks = text.split(/---/).filter(block => block.trim() && !block.includes('FINAL SUMMARY'))
-    
-    trialBlocks.forEach(block => {
-      const lines = block.trim().split('\n')
-      
-      // Extract Trial ID
-      const idLine = lines.find(l => l.startsWith('Trial ID:'))
-      const trialId = idLine ? idLine.replace('Trial ID:', '').trim() : 'Unknown'
-      
-      // Extract Relevance
-      const relLine = lines.find(l => l.startsWith('Relevance:'))
-      const relevance = relLine ? relLine.replace('Relevance:', '').trim() : 'Unknown'
-      
-      // Extract Clinical Summary
-      const summaryIdx = lines.findIndex(l => l.startsWith('Clinical Summary:'))
-      let summary = ''
-      if (summaryIdx >= 0) {
-        summary = lines[summaryIdx].replace('Clinical Summary:', '').trim()
+    const trialsSection = finalSummaryMatch ? normalized.slice(0, finalSummaryMatch.index).trim() : normalized
+
+    const trialBlocks = trialsSection
+      .split(/\n---\n/)
+      .map(block => block.trim())
+      .filter(Boolean)
+
+    const trials = trialBlocks.map(block => {
+      const trialIdMatch = block.match(/^Trial ID:\s*(.+)$/m)
+      const relevanceMatch = block.match(/^Relevance:\s*(.+)$/m)
+
+      return {
+        trialId: trialIdMatch ? trialIdMatch[1].trim() : 'Unknown',
+        relevance: relevanceMatch ? relevanceMatch[1].trim() : 'Unknown',
+        summary: extractSection(block, 'Clinical Summary:', ['Eligibility Assessment:', 'Final Judgment:']),
+        eligibilityAssessment: extractSection(block, 'Eligibility Assessment:', ['Final Judgment:']),
+        judgment: extractSection(block, 'Final Judgment:', []),
       }
-      
-      // Extract Final Judgment
-      const judgmentIdx = lines.findIndex(l => l.startsWith('Final Judgment:'))
-      let judgment = ''
-      if (judgmentIdx >= 0) {
-        judgment = lines.slice(judgmentIdx).join('\n').replace('Final Judgment:', '').trim()
-        // Stop at next section
-        const nextSection = judgment.indexOf('\n\n')
-        if (nextSection > 0) judgment = judgment.substring(0, nextSection)
-      }
-      
-      trials.push({ trialId, relevance, summary, judgment })
     })
-    
+
     return { trials, finalSummary }
   }
 
   const { trials, finalSummary } = parseResponse(result)
-  
+
   const getRelevanceBadge = (relevance) => {
     const colors = {
       'Low': '#ef4444',
@@ -64,6 +63,25 @@ export default function TrialResult({ result }) {
     if (lower.includes('strong candidate') || lower.includes('meets')) return '✅'
     if (lower.includes('medium') || lower.includes('uncertain') || lower.includes('primary uncertainty')) return '⚠️'
     return '✅'
+  }
+
+  const renderParagraphs = (text) => {
+    if (!text) return <p className="empty-text">Not specified</p>
+
+    return text.split(/\n\n+/).map((paragraph, idx) => {
+      const lines = paragraph.split('\n')
+
+      return (
+        <p key={idx} className="summary-paragraph">
+          {lines.map((line, lineIdx) => (
+            <React.Fragment key={lineIdx}>
+              {line.replace(/\*\*/g, '')}
+              {lineIdx < lines.length - 1 ? <br /> : null}
+            </React.Fragment>
+          ))}
+        </p>
+      )
+    })
   }
 
   return (
@@ -88,14 +106,16 @@ export default function TrialResult({ result }) {
 
             <div className="trial-section">
               <h4>Summary</h4>
-              <p>{trial.summary}</p>
+              {renderParagraphs(trial.summary)}
             </div>
 
             <div className="trial-section">
               <h4>Eligibility Assessment</h4>
               <div className="eligibility-box">
                 <span className="eligibility-icon">{getEligibilityIcon(trial.judgment)}</span>
-                <p>{trial.judgment}</p>
+                <div className="eligibility-copy">
+                  {renderParagraphs(trial.eligibilityAssessment || trial.judgment)}
+                </div>
               </div>
             </div>
           </div>
@@ -106,16 +126,7 @@ export default function TrialResult({ result }) {
         <div className="final-summary-box">
           <h3>Summary & Recommendation</h3>
           <div className="summary-content">
-            {finalSummary.split('\n\n').map((para, idx) => (
-              <p key={idx} className="summary-paragraph">
-                {para.replace(/\*\*/g, '').split('\n').map((line, i) => (
-                  <React.Fragment key={i}>
-                    {line}
-                    <br />
-                  </React.Fragment>
-                ))}
-              </p>
-            ))}
+            {renderParagraphs(finalSummary)}
           </div>
         </div>
       )}

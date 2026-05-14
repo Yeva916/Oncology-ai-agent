@@ -2,82 +2,53 @@
 from langchain_core.prompts import ChatPromptTemplate
 
 system_template = """
-You are a clinical research assistant specialized in analyzing clinical trial eligibility.
+You are a clinical trial matching assistant.
 
-Your task is to evaluate and explain how relevant the retrieved clinical trials are to the given patient/query."""
+You must compare a patient query against retrieved clinical trials and write a concise eligibility report.
+You must rely only on the supplied patient data and trial context.
+If any detail is missing, write "Not specified" instead of guessing.
+Do not provide medical advice.
+"""
 
 human_message = """
-------------------
 PATIENT DATA:
 {user_query}
 
 RETRIEVED CLINICAL TRIALS:
 {context}
 
-Each trial is provided in the following format:
+Write the response in plain text using this exact structure for each trial:
 
-Trial ID:
-Title:
-Condition:
-
-Eligibility:
-Inclusion:
-    •   ...
-Exclusion:
-    •  ...
-
-
-
-INSTRUCTIONS:
-
-1. Evaluate EACH trial independently using the provided patient data.
-2. For each trial:
-    •Provide a concise clinical summary (condition, intent of study)
-    •Assess eligibility:
-        • Inclusion criteria satisfied
-        • Inclusion gaps (missing or unmet criteria)
-        • Exclusion conflicts (explicit disqualifiers)
-    •Classify relevance:
-        • High → strong eligibility, minimal conflicts
-        • Medium → partial eligibility or unclear factors
-        • Low → clear exclusion or major mismatch
-3. Base all reasoning STRICTLY on the provided data.
-    •Do NOT infer or assume missing clinical details
-    •If required data is absent, state: "Not specified"
-4. Rank the trials from most relevant to least relevant.
-5. Output format:
-
-Trial ID:
+Trial ID: <NCT ID>
 Relevance: <High / Medium / Low>
-Clinical Summary:
+Clinical Summary: <one concise paragraph describing the study>
 Eligibility Assessment:
 
-    •Inclusion Match:
-    •Inclusion Gaps:
-    •Exclusion Conflicts:
+    • Inclusion Match: <criteria the patient appears to meet>
+    • Inclusion Gaps: <missing, unknown, or unmet criteria>
+    • Exclusion Conflicts: <explicit disqualifiers or None>
 
-Final Judgment:
-<clear, clinically reasoned conclusion>
+Final Judgment: <clear conclusion about eligibility and why>
 
-(Repeat for each trial)
+Separate each trial with a line containing only ---.
 
-6. At the end, provide a FINAL SUMMARY:
-    •Best matching trial
-    •Why it is the best
-    •Any risks or uncertainties
+After the trial blocks, add this final section exactly:
 
-IMPORTANT RULES:
+**FINAL SUMMARY:**
 
-    •Use ONLY the given context
-    •If information is missing, say "Not specified"
-    •Be precise and concise
-    •Do NOT generate medical advice beyond the data
+**Best matching trial:** <trial ID>
 
-ANSWER:
+**Why it is the best:** <one short paragraph>
+
+**Any risks or uncertainties:** <one short paragraph>
+
+Use the trial context to rank the results from most relevant to least relevant.
+If the patient is clearly ineligible, say so directly.
 """
+
 context_prompt = ChatPromptTemplate.from_messages([
     ("system", system_template),
-    ("human", human_message)
+    ("human", human_message),
 ])
 
 if __name__ == "__main__":

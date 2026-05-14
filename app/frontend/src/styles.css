@@ -46,6 +46,8 @@ button:hover:not(:disabled){opacity:0.9}
 .eligibility-box{display:flex;gap:12px;background:rgba(255,255,255,0.02);padding:12px;border-radius:6px;border-left:3px solid var(--muted)}
 .eligibility-icon{font-size:20px;min-width:24px}
 .eligibility-box p{margin:0;line-height:1.5}
+.eligibility-copy{display:flex;flex-direction:column;gap:10px}
+.empty-text{margin:0;color:var(--muted);font-size:14px}
 
 .final-summary-box{background:var(--card);border:2px solid var(--accent);border-radius:8px;padding:20px;margin-top:24px}
 .final-summary-box h3{margin:0 0 16px 0;color:var(--accent)}
