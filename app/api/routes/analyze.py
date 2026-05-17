@@ -1,5 +1,3 @@
-from typing import Any, List, Optional
-
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
@@ -11,14 +9,13 @@ router = APIRouter()
 
 class AnalyzeRequest(BaseModel):
     query: str
-    context: Optional[List[Any]] = None
 
 
 @router.post("/analyze")
 def analyze(req: AnalyzeRequest):
     """Analyze clinical query using LangGraph workflow"""
     try:
-        result = run_analysis(req.query, req.context or [])
+        result = run_analysis(req.query)
         
         if result.get("error"):
             raise HTTPException(status_code=400, detail=result["error"])

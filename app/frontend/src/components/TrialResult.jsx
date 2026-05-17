@@ -3,7 +3,16 @@ import React from 'react'
 export default function TrialResult({ result }) {
   if (!result) return null
 
-  const normalizeText = (text) => text.replace(/\r/g, '').trim()
+  const normalizeText = (text) => {
+    if (!text) return ''
+
+    return String(text)
+      .replace(/\\n/g, '\n')
+      .replace(/\\r/g, '\r')
+      .replace(/\r/g, '')
+      .replace(/^"|"$/g, '')
+      .trim()
+  }
 
   const extractSection = (block, startLabel, endLabels = []) => {
     const startIndex = block.indexOf(startLabel)

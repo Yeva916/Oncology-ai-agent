@@ -1,13 +1,13 @@
 from fastapi import APIRouter, HTTPException
 
-from app.workflow import run_analysis
+from app.demo import generate_demo_response
 
 router = APIRouter()
 
 
 @router.get("/demo")
 def demo():
-    """Run demo analysis with sample clinical data using LangGraph workflow"""
+    """Run demo analysis with sample clinical data using the mock demo response."""
     try:
         user_query = "Patient with advanced non-small cell lung cancer, age 65, ECOG performance status 1, with no prior systemic therapy."
         context = [
@@ -15,12 +15,7 @@ def demo():
             {"nct_id": "NCT06538038", "final_score": 0.8447493505},
         ]
         
-        result = run_analysis(user_query, context)
-        
-        if result.get("error"):
-            raise HTTPException(status_code=400, detail=result["error"])
-        
-        return {"response": result["response"]}
+        return {"response": generate_demo_response(user_query, context)}
     except HTTPException:
         raise
     except Exception as e:
