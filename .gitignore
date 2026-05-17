@@ -24,3 +24,7 @@ Thumbs.db
 # --- Data & Logs ---
 *.log       
 *.vcf            
+*.egg-info/
+test.py
+*.json
+app/data

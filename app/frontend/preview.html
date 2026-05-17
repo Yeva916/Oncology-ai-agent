@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trial Result Preview - Test</title>
+    <style>
+        :root{
+            --bg:#0f1724;
+            --card:#0b1220;
+            --accent:#6ee7b7;
+            --muted:#94a3b8;
+            --success:#10b981;
+            --warning:#f59e0b;
+            --danger:#ef4444;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: Inter, Segoe UI, Arial, Helvetica, sans-serif;
+            margin: 0;
+            background: linear-gradient(180deg, #071129 0%, #0f1724 100%);
+            color: #e6eef6;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: var(--accent); margin-top: 0; }
+        
+        .trials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .trial-card {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 16px;
+            transition: border-color 0.2s;
+        }
+        .trial-card:hover { border-color: var(--accent); }
+        
+        .trial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .trial-id {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 16px;
+        }
+        .relevance-badge {
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .trial-section {
+            margin-bottom: 16px;
+        }
+        .trial-section:last-child { margin-bottom: 0; }
+        .trial-section h4 {
+            margin: 0 0 8px 0;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+        .trial-section p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .eligibility-box {
+            display: flex;
+            gap: 12px;
+            background: rgba(255,255,255,0.02);
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--muted);
+        }
+        .eligibility-icon {
+            font-size: 20px;
+            min-width: 24px;
+        }
+        .eligibility-box p {
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        .final-summary-box {
+            background: var(--card);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+        .final-summary-box h3 {
+            margin: 0 0 16px 0;
+            color: var(--accent);
+        }
+        .summary-content {
+            background: rgba(255,255,255,0.02);
+            padding: 16px;
+            border-radius: 6px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+        .summary-paragraph {
+            margin: 12px 0;
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+        .summary-paragraph:first-child { margin-top: 0; }
+        .summary-paragraph:last-child { margin-bottom: 0; }
+        
+        .info-box {
+            background: rgba(109, 220, 180, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trial Result Preview (Test)</h1>
+        <div class="info-box">
+            <p>This preview uses the response.txt file to show how the UI will display trial analysis results.</p>
+        </div>
+        
+        <div id="results"></div>
+    </div>
+
+    <script>
+        // Simulated response from response.txt (you can paste the actual content)
+        const responseContent = `Trial ID: NCT06116682
+Relevance: Low
+Clinical Summary: A targeted treatment trial for patients with advanced non-small cell lung cancer (NSCLC) specifically characterized by increased copies of the MET gene.
+Eligibility Assessment:
+
+    •Inclusion Match: Zubrod performance status 0-2 (Patient ECOG PS 1 is compatible).
+    •Inclusion Gaps: LUNGMAP assignment, documentation of measurable disease, brain scan results, and all laboratory values (ANC, Hemoglobin, Platelets, Bilirubin, AST/ALT, Creatinine) are Not specified.
+    •Exclusion Conflicts: The trial requires that the patient has "Received at least one line of systemic treatment" and has "Progressed following the most recent line of therapy." The patient has had no prior systemic therapy.
+
+Final Judgment: The patient is ineligible for this trial because they are treatment-naïve, whereas the trial explicitly requires at least one prior line of systemic therapy and evidence of progression.
+
+---
+
+Trial ID: NCT06538038
+Relevance: Medium
+Clinical Summary: A prospective non-interventional study comparing the use of Osimertinib with or without chemotherapy in patients with EGFR-mutated advanced NSCLC.
+Eligibility Assessment:
+
+    •Inclusion Match: Pathologically-confirmed NSCLC, advanced disease, and age >= 18 (Patient is 65).
+    •Inclusion Gaps: EGFR mutation status is Not specified.
+    •Exclusion Conflicts: None based on provided data. (Prior treatment is "allowed," so the lack of prior therapy is not a conflict).
+
+Final Judgment: The patient meets the basic demographic and disease stage criteria. However, relevance is Medium because the trial is restricted to patients with EGFR mutations; the patient's mutation status is Not specified. If the patient possesses a sensitizing EGFR mutation, they would be a strong candidate.
+
+---
+
+**FINAL SUMMARY:**
+
+**Best matching trial:** NCT06538038
+
+**Why it is the best:** Trial NCT06116682 is a clear mismatch because it requires prior systemic therapy, which the patient has not received. Trial NCT06538038 accepts patients regardless of whether they have had prior therapy, provided they meet the disease and mutation criteria.
+
+**Any risks or uncertainties:** The primary uncertainty is the patient's molecular profile. Trial NCT06538038 requires a sensitizing EGFR mutation for eligibility, and this information was Not specified in the patient data.`;
+
+        function parseResponse(text) {
+            const trials = [];
+            const finalSummaryMatch = text.match(/\*\*FINAL SUMMARY:\*\*(.+)$/s);
+            const finalSummary = finalSummaryMatch ? finalSummaryMatch[1].trim() : '';
+            
+            // Split by --- to get trial blocks
+            const trialBlocks = text.split(/---/).filter(block => 
+                block.trim() && !block.includes('FINAL SUMMARY')
+            );
+            
+            trialBlocks.forEach(block => {
+                const lines = block.trim().split('\n');
+                
+                // Extract Trial ID
+                const idLine = lines.find(l => l.startsWith('Trial ID:'));
+                const trialId = idLine ? idLine.replace('Trial ID:', '').trim() : 'Unknown';
+                
+                // Extract Relevance
+                const relLine = lines.find(l => l.startsWith('Relevance:'));
+                const relevance = relLine ? relLine.replace('Relevance:', '').trim() : 'Unknown';
+                
+                // Extract Clinical Summary
+                const summaryIdx = lines.findIndex(l => l.startsWith('Clinical Summary:'));
+                let summary = '';
+                if (summaryIdx >= 0) {
+                    summary = lines[summaryIdx].replace('Clinical Summary:', '').trim();
+                }
+                
+                // Extract Final Judgment
+                const judgmentIdx = lines.findIndex(l => l.startsWith('Final Judgment:'));
+                let judgment = '';
+                if (judgmentIdx >= 0) {
+                    judgment = lines.slice(judgmentIdx).join('\n').replace('Final Judgment:', '').trim();
+                    const nextSection = judgment.indexOf('\n\n');
+                    if (nextSection > 0) judgment = judgment.substring(0, nextSection);
+                }
+                
+                trials.push({ trialId, relevance, summary, judgment });
+            });
+            
+            return { trials, finalSummary };
+        }
+
+        function getRelevanceBadgeColor(relevance) {
+            const colors = {
+                'Low': '#ef4444',
+                'Medium': '#f59e0b',
+                'High': '#10b981'
+            };
+            return colors[relevance] || '#6b7280';
+        }
+
+        function getEligibilityIcon(judgment) {
+            const lower = judgment.toLowerCase();
+            if (lower.includes('ineligible') || lower.includes('treatment-naïve') || lower.includes('clear mismatch')) return '❌';
+            if (lower.includes('strong candidate') || lower.includes('meets')) return '✅';
+            if (lower.includes('medium') || lower.includes('uncertain') || lower.includes('primary uncertainty')) return '⚠️';
+            return '✅';
+        }
+
+        function renderResults() {
+            const { trials, finalSummary } = parseResponse(responseContent);
+            let html = '<div class="trials-grid">';
+            
+            trials.forEach(trial => {
+                const badgeColor = getRelevanceBadgeColor(trial.relevance);
+                const icon = getEligibilityIcon(trial.judgment);
+                html += `
+                    <div class="trial-card">
+                        <div class="trial-header">
+                            <div class="trial-id">${trial.trialId}</div>
+                            <div class="relevance-badge" style="background-color: ${badgeColor}">
+                                ${trial.relevance}
+                            </div>
+                        </div>
+                        <div class="trial-section">
+                            <h4>Summary</h4>
+                            <p>${trial.summary}</p>
+                        </div>
+                        <div class="trial-section">
+                            <h4>Eligibility Assessment</h4>
+                            <div class="eligibility-box">
+                                <span class="eligibility-icon">${icon}</span>
+                                <p>${trial.judgment}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            
+            if (finalSummary) {
+                html += '<div class="final-summary-box"><h3>Summary & Recommendation</h3><div class="summary-content">';
+                const paragraphs = finalSummary.split('\n\n');
+                paragraphs.forEach(para => {
+                    const cleanPara = para.replace(/\*\*/g, '').replace(/\n/g, '<br>');
+                    html += `<p class="summary-paragraph">${cleanPara}</p>`;
+                });
+                html += '</div></div>';
+            }
+            
+            document.getElementById('results').innerHTML = html;
+        }
+
+        renderResults();
+    </script>
+</body>
+</html>

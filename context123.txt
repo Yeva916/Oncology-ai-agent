@@ -1,0 +1,143 @@
+Trial ID: NCT04181060
+Title: Osimertinib With or Without Bevacizumab as Initial Treatment for Patients With EGFR-Mutant Lung Cancer
+Condition: Advanced Lung Non-Squamous Non-Small Cell Carcinoma, Metastatic Lung Non-Squamous Non-Small Cell Carcinoma, Recurrent Lung Non-Squamous Non-Small Cell Carcinoma, Stage IIIB Lung Cancer AJCC v8, Stage IV Lung Cancer AJCC v8
+Relevance Score: 0.367
+Brief Summary: This phase III trial compares the effect of bevacizumab and osimertinib combination vs. osimertinib alone for the treatment of non-small cell lung cancer that has spread outside of the lungs (stage IIIB-IV) and has a change (mutation) in a gene called EGFR. The EGFR protein is involved in cell signaling pathways that control cell division and survival. Sometimes, mutations in the EGFR gene cause EGFR proteins to be made in higher than normal amounts on some types of cancer cells. This causes cancer cells to divide more rapidly. Osimertinib may stop the growth of tumor cells by blocking EGFR that is needed for cell growth in this type of cancer. Bevacizumab is in a class of medications called antiangiogenic agents. It works by stopping the formation of blood vessels that bring oxygen and nutrients to tumor. This may slow the growth and spread of tumor. Giving osimertinib with bevacizumab may control cancer for longer and help patients live longer as compared to osimertinib alone.
+Eligibility:
+Inclusion:
+    • No prior treatment with anti-VEGF agents
+    • No prior systemic treatment for metastatic disease
+    • Age >= 18 years
+    • ECOG performance status 0 to 2
+    • Measurable disease per RECIST
+    • Leukocytes >= 3,000/mcL
+    • Absolute neutrophil count >= 1,500/mcL
+Exclusion:
+    • EGFR exon 20 insertions
+    • Prior treatment with EGFR TKI (unless started osimertinib within 21 days prior to randomization with baseline imaging completed)
+    • Risk factors for anti-VEGF administration (hemoptysis, active cardiovascular disease, uncontrolled hypertension, significant proteinuria > 300 mg/dl, tumor invading major blood vessels)
+    • Pregnancy or breastfeeding
+    • Medical history of interstitial lung disease (ILD), drug-induced ILD, or radiation pneumonitis requiring steroid treatment, or clinically active ILD
+    • Mean resting corrected QT interval (QTc) > 470 msec
+    • Clinically important abnormalities in rhythm, conduction or morphology of resting ECG (e.g., complete left bundle branch block, third degree heart block, second-degree heart block)
+    • Factors increasing risk of QTc prolongation or arrhythmic events (heart failure, electrolyte abnormalities, congenital long QT syndrome, family history of long QT syndrome)
+    • Strong inducers of CYP3A4
+    • Unresolved toxicities from prior therapy > CTCAE grade 1 (except alopecia and grade 2 platinum-therapy-related neuropathy)
+    • Severe or uncontrolled systemic diseases
+    • Refractory nausea/vomiting, chronic gastrointestinal diseases, inability to swallow tablets, or previous significant bowel resection
+    • Hypersensitivity to osimertinib or similar drugs
+---
+Trial ID: NCT06538038
+Title: Prospective Non-Interventional Study Comparing Osimertinib +/- Chemotherapy for EGFR-Mutated NSCLC Patients
+Condition: Non Small Cell Lung Cancer, Epidermal Growth Factor Receptor Gene Mutation, Stage III Lung Cancer, Stage IV Lung Cancer
+Relevance Score: 0.363
+Brief Summary: The goal of the study is to collect data on patients treated outside of a clinical trial (in routine clinical practice) with standard of care osimertinib with or without chemotherapy in Epidermal Growth Factor Receptor (EGFR)-mutant Non-Small Cell Lung Cancer (NSCLC) to better understand the safety and effectiveness of these standard of care regimens.
+Eligibility:
+Inclusion:
+    • Pathologically-confirmed diagnosis of NSCLC
+    • Advanced disease (Stage IIIB, IIIC, or IV) per AJCC/IASLC 8th edition
+    • Adults age >= 18 years
+    • Prior chemotherapy and/or immunotherapy as primary treatment allowed if administered <= 45 days before registration
+    • Prior osimertinib as primary treatment allowed if administered <= 30 days before registration
+    • Prior radiation therapy for NSCLC is eligible
+Exclusion:
+    • Non-sensitizing EGFR mutations (e.g., EGFR exon 20 insertions)
+    • Prior treatment with any EGFR TKI agent other than osimertinib
+    • Participation in other cancer treatment trials
+    • Osimertinib or osimertinib + chemotherapy/immunotherapy as first-line treatment given as part of a clinical trial
+---
+Trial ID: NCT06567015
+Title: Study of FIH of STX-241 in Locally Advanced or Metastatic NSCLC Resistant to EGFR TKIs
+Condition: Non-small Cell Lung Cancer (NSCLC)
+Relevance Score: 0.359
+Brief Summary: The goal of this First-In-Human (FIH) Phase I/II trial is to establish the safety profile, determine the Recommended Phase II Dose (RP2D), explore the pharmacokinetic (PK) exposure and pharmacodynamic (PD) properties as well as assess the efficacy of STX-241/PFL-241, a mutant selective Central Nervous System (CNS)-penetrant fourth generation EGFR TKI, in participants with locally advanced or metastatic NSCLC that progressed during or following third generation EGFR TKI such as osimertinib due to C797X double acquired (secondary) mutations.
+Eligibility:
+Inclusion:
+    • Locally advanced or metastatic disease
+    • Not eligible for curative intent surgery or chemoradiation
+    • Disease progression on a 3rd generation EGFR TKI-based therapy
+    • At least one measurable target lesion according to RECIST v1.1
+    • ECOG performance status 0-1
+    • Absolute neutrophil count (ANC) >= 1.5 x 10^9/L
+    • Platelets >= 75 x 10^9/L
+    • Hemoglobin >= 90 g/L
+    • Serum total bilirubin <= 1.5 x ULN (or <= 3.0 x ULN for Gilbert's syndrome)
+    • ALT and AST <= 3.0 x ULN (or <= 5 x ULN for liver metastases)
+    • Estimated GFR >= 50 mL/min
+    • QTcF <= 470 msec (women) and <= 450 msec (men)
+    • LVEF >= 50%
+    • Systolic blood pressure < 150 mmHg and diastolic blood pressure < 100 mmHg
+Exclusion:
+    • Candidate for other targeted therapies (ALK, BRAF, MET, NTRK, ROS1)
+    • Rapid progressive disease eligible for platinum-based chemotherapy
+    • Unable to ingest or digest tablets
+    • History of primary malignancy other than NSCLC (with specific exceptions)
+    • Spinal cord compression or CNS metastases with progressive neurological symptoms or requiring increasing corticosteroids
+    • Hypersensitivity to STX-241 or similar drugs
+    • Active bacterial, fungal, or viral infection (HBV, HCV, HIV/AIDS, tuberculosis)
+    • Positive SARS-CoV-2 RT-PCR test
+    • Clinically significant cardiovascular disease (MI, acute coronary syndromes, symptomatic CHF NYHA Class >= II, CVA, TIA, symptomatic bradycardia, Grade >= 2 cardiac dysrhythmias)
+    • Uncontrolled intercurrent illness
+    • History of Interstitial Lung Disease (ILD), drug-induced ILD, or radiation pneumonitis requiring steroid treatment
+    • History of Stevens-Johnson Syndrome (SJS) or Toxic epidermal necrolysis (TEN)
+    • Breastfeeding women
+    • EGFR-targeted TKI within 7 days prior to first dose
+    • Systemic anticancer therapy within 28 days or 5 half-lives prior to first dose
+    • Radiotherapy to a large field or vital organ within 14 days before first dose
+    • Live attenuated vaccine within 30 days prior to first dose
+    • Prior therapy toxicities NCI-CTCAE Grade >= 1 (except alopecia, fatigue <= Grade 2, peripheral neuropathy <= Grade 2)
+    • Major surgical procedure within 14 days of first dose
+    • Treatment with prohibited CYP1A2/CYP3A4 inducers/inhibitors, substrates, or PPI/H2 antagonists
+---
+Trial ID: NCT06863506
+Title: Phase II Clinical Study of Befotertinib in EGFR Non-classical Mutant NSCLC
+Condition: NSCLC (Non-small Cell Lung Cancer)
+Relevance Score: 0.358
+Brief Summary: This is a prospective, multi-cohort, single-arm Phase II clinical trial evaluating the efficacy and safety of befotertinib, a third-generation EGFR tyrosine kinase inhibitor (TKI), in patients with advanced or metastatic non-small cell lung cancer (NSCLC) harboring EGFR non-classical mutations.
+
+The study comprises two independent cohorts:
+
+Cohort 1: Patients with EGFR uncommon mutations (G719X, L861Q, or S768I). Cohort 2: Patients with EGFR exon 20 insertion mutation
+
+Primary endpoint: Objective response rate (ORR) assessed by RECIST 1.1. Secondary endpoints: Disease control rate (DCR), duration of response (DoR), progression-free survival (PFS), overall survival (OS), and safety profile (CTCAE v4.03).
+Eligibility:
+Inclusion:
+    • Age >= 18 years
+    • ECOG performance status 0-2
+    • No prior EGFR-TKI therapy
+    • Progression or intolerance to >= 1 line of platinum-based chemotherapy
+    • >= 1 measurable lesion per RECIST 1.1
+Exclusion:
+    • Previous EGFR-TKI treatment
+    • Active CNS metastases
+    • Severe cardiovascular disease (QTc >= 450 ms, myocardial infarction within 6 months)
+    • Active HBV/HCV/HIV infection
+    • Pregnancy or lactation
+---
+Trial ID: NCT06486142
+Title: EGFR-mutated Lung Cancer in Randomized Investigator-Initiated Study
+Condition: Non-Small Cell Lung Cancer
+Relevance Score: 0.357
+Brief Summary: The purpose of this study is to evaluate the optimal sequence of EGFR-inhibitors in lung cancer patients with EGFR-positive tumors not amenable for curative treatment. Life quality, adverse effects and tumor response will be evaluated and analyses of obtained blood and tumor samples will be performed to identify molecular profiles and biomarkers that can be used for treatment decisions.
+Eligibility:
+Inclusion:
+    • Written consent provided
+    • Measurable disease per RECIST 1.1
+    • WHO Performance Status (PS) any
+    • Age >= 18 years
+    • Treatment-naive with regard to TKI's
+    • Negative pregnancy test
+    • Adequate contraception for fertile participants
+Exclusion:
+    • Other primary malignancy with metastatic potential
+    • Co-enrolment in other interventional trial
+    • Intake of Hypericum perforatum
+    • Concomitant use of medications with known interaction with planned treatment (e.g., strong CYP3A activators, strong P-glycoprotein inhibitors/activators, Proton pump inhibitors, CYP2D6 metabolized drugs)
+    • Severe or uncontrolled systemic diseases
+    • Gastrointestinal conditions incompatible with swallowing or absorption
+    • Pregnancy or refusal to use contraceptives
+    • Abnormal blood chemistry incompatible with study drug
+    • History of hypersensitivity to study drug or similar class
+    • Severe hepatic or renal impairment
+    • Hereditary conditions: galactose intolerance, total lactase deficiency, or glucose-galactose malabsorption
+    • Congenital long QT syndrome
