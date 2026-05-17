@@ -4,8 +4,9 @@ from app.context_builder.context import build_context
 from app.prompts.context import context_prompt
 
 def generate_response(user_query, context):
+    print("Generating response using LLM...")
     llm = ChatGoogleGenerativeAI(model="gemma-4-31b-it", temperature=0.2)
-    trial_context = build_context(context, user_query)
+    trial_context = context if isinstance(context, str) else build_context(context, user_query)
     chain = context_prompt | llm
     response = chain.invoke({"user_query": user_query, "context": trial_context})
     response_text = getattr(response, "content", response)
